@@ -2,6 +2,7 @@ package com.example.androiduitesting;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     // Declare the variables so that you will be able to reference it later.
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         nameField = findViewById(R.id.field_nameEntry);
-        newName  = findViewById(R.id.editText_name);
+        newName = findViewById(R.id.editText_name);
 
         cityList = findViewById(R.id.city_list);
 
@@ -64,5 +66,12 @@ public class MainActivity extends AppCompatActivity {
                 cityAdapter.clear();
             }
         });
-    }
-}
+
+        cityList.setOnItemClickListener((parent, view, position, id) -> {
+            String selectedCity = dataList.get(position);
+            Intent intent = new Intent(MainActivity.this, MainActivity3.class);
+            intent.putExtra("selectedCity", selectedCity);
+            startActivity(intent);
+        });
+
+    }}
